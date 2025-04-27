@@ -4,6 +4,7 @@ import Layout from "./components/layout/Layout";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import CreateListingPage from "./pages/CreateListingPage";
 import HowItWorksPage from "./pages/HowItWorksPage";
 import BrowsePage from "./pages/BrowsePage";
@@ -26,6 +27,7 @@ function App() {
         {/* Auth Pages (without Layout) */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
         {/* Pages with Layout */}
         <Route
