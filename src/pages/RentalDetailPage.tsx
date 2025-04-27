@@ -279,9 +279,14 @@ const RentalDetailPage: React.FC = () => {
                 {/* Map Section */}
                 <div className="map-section">
                   <img
-                    src={`https://maps.googleapis.com/maps/api/staticmap?center=${rental.latitude},${rental.longitude}&zoom=14&size=800x300&markers=color:red%7C${rental.latitude},${rental.longitude}&key=YOUR_API_KEY`}
+                    src="https://maps.googleapis.com/maps/api/staticmap?center=37.7749,-122.4194&zoom=14&size=800x300&markers=color:red%7C37.7749,-122.4194&key=AIzaSyBNLrJhOMz6idD05pzwk_qCXOe-SoqGFAY"
                     alt="Item location map"
                     className="map-image"
+                    onError={(e) => {
+                      e.currentTarget.src =
+                        "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80";
+                      e.currentTarget.alt = "Map placeholder image";
+                    }}
                   />
                 </div>
               </div>

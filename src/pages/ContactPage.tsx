@@ -262,9 +262,14 @@ const ContactPage: React.FC = () => {
         <div className="map-container">
           {/* In a real implementation, you would integrate with Google Maps or another map provider */}
           <img
-            src="https://maps.googleapis.com/maps/api/staticmap?center=San+Francisco,CA&zoom=13&size=1200x400&key=YOUR_API_KEY"
+            src="https://maps.googleapis.com/maps/api/staticmap?center=San+Francisco,CA&zoom=13&size=1200x400&key=AIzaSyBNLrJhOMz6idD05pzwk_qCXOe-SoqGFAY"
             alt="Map of our location"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            onError={(e) => {
+              e.currentTarget.src =
+                "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80";
+              e.currentTarget.alt = "San Francisco city view";
+            }}
           />
         </div>
       </div>

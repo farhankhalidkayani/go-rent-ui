@@ -32,7 +32,7 @@ const mockRentals = [
     title: "2023 Tesla Model Y",
     price: 120,
     image:
-      "https://images.unsplash.com/photo-1619767886558-efdc7e108768?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      "https://static0.carbuzzimages.com/wordpress/wp-content/uploads/gallery-images/original/847000/600/847698.jpg",
     location: "Los Angeles, CA",
     rating: 4.9,
     category: "Cars",
@@ -42,7 +42,7 @@ const mockRentals = [
     title: "High-end Gaming Laptop",
     price: 35,
     image:
-      "https://images.unsplash.com/photo-1603302576837-37561b2e2db8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      "https://i.pcmag.com/imagery/reviews/06HnGEGjzlHopIl2HTTjJzT-1.fit_lim.size_919x518.v1706741783.jpg",
     location: "Austin, TX",
     rating: 4.7,
     category: "Electronics",
@@ -112,7 +112,7 @@ const mockRentals = [
     title: "Party Speaker System",
     price: 65,
     image:
-      "https://images.unsplash.com/photo-1558662262-f5a994046462?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      "https://res.cloudinary.com/sharp-consumer-eu/image/fetch/w_500,f_auto,q_auto/https://s3.infra.brandquad.io/accounts-media/SHRP/DAM/origin/9d761f8c-dca1-11ea-9ff5-1a1d4a98f6ce.jpg",
     location: "Las Vegas, NV",
     rating: 4.5,
     category: "Electronics",
@@ -132,7 +132,7 @@ const mockRentals = [
     title: "Electric Lawn Mower",
     price: 28,
     image:
-      "https://images.unsplash.com/photo-1589151277715-5b098746b9fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      "https://www.cnet.com/a/img/resize/531082283d025652813fda108c95bd77dd6213dc/hub/2021/05/20/448f6c5a-4045-46be-bbb8-6b707a86d819/electric-mowers-2021-09.jpg?auto=webp&fit=crop&height=1200&width=1200",
     location: "Phoenix, AZ",
     rating: 4.3,
     category: "Tools",

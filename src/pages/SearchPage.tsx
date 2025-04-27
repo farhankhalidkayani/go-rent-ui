@@ -20,7 +20,7 @@ const searchResults = [
     title: "2023 Tesla Model Y",
     price: 120,
     image:
-      "https://images.unsplash.com/photo-1617704548623-0ef2fe6c25a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      "https://static0.carbuzzimages.com/wordpress/wp-content/uploads/gallery-images/original/847000/600/847698.jpg",
     location: "Los Angeles, CA",
     rating: 4.9,
     category: "Cars",
@@ -30,7 +30,7 @@ const searchResults = [
     title: "High-end Gaming Laptop",
     price: 35,
     image:
-      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      "https://i.pcmag.com/imagery/reviews/06HnGEGjzlHopIl2HTTjJzT-1.fit_lim.size_919x518.v1706741783.jpg",
     location: "Austin, TX",
     rating: 4.7,
     category: "Electronics",
@@ -50,7 +50,7 @@ const searchResults = [
     title: "Electric Lawn Mower",
     price: 30,
     image:
-      "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      "https://www.cnet.com/a/img/resize/531082283d025652813fda108c95bd77dd6213dc/hub/2021/05/20/448f6c5a-4045-46be-bbb8-6b707a86d819/electric-mowers-2021-09.jpg?auto=webp&fit=crop&height=1200&width=1200",
     location: "Atlanta, GA",
     rating: 4.5,
     category: "Tools",
