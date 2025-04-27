@@ -19,6 +19,14 @@ import FAQPage from "./pages/FAQPage";
 import RentalDetailPage from "./pages/RentalDetailPage";
 import MessagesPage from "./pages/MessagesPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
+
+// Import the new account pages
+import ProfilePage from "./pages/ProfilePage";
+import BookingsPage from "./pages/BookingsPage";
+import MyListingsPage from "./pages/MyListingsPage";
+import ReviewsPage from "./pages/ReviewsPage";
+import TransactionsPage from "./pages/TransactionsPage";
+
 import "./App.css";
 // Import our test styles directly
 import "./test-styles.css";
@@ -32,6 +40,48 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+
+          {/* User Account Pages (with Layout) */}
+          <Route
+            path="/profile"
+            element={
+              <Layout>
+                <ProfilePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/bookings"
+            element={
+              <Layout>
+                <BookingsPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/my-listings"
+            element={
+              <Layout>
+                <MyListingsPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/reviews"
+            element={
+              <Layout>
+                <ReviewsPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/transactions"
+            element={
+              <Layout>
+                <TransactionsPage />
+              </Layout>
+            }
+          />
 
           {/* Pages with Layout */}
           <Route

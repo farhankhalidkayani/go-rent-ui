@@ -7,6 +7,24 @@ interface User {
   email: string;
   firstName?: string;
   lastName?: string;
+  phoneNumber?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
+  bio?: string;
+}
+
+// Define profile update data interface
+interface ProfileUpdateData {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  bio: string;
 }
 
 // Define registration data interface
@@ -28,6 +46,7 @@ interface AuthContextType {
     rememberMe?: boolean
   ) => Promise<boolean>;
   register: (data: RegistrationData) => Promise<boolean>;
+  updateProfile: (data: ProfileUpdateData) => Promise<boolean>;
   logout: () => void;
   error: string | null;
 }
@@ -39,6 +58,7 @@ const AuthContext = createContext<AuthContextType>({
   isLoading: true,
   login: () => Promise.resolve(false),
   register: () => Promise.resolve(false),
+  updateProfile: () => Promise.resolve(false),
   logout: () => {},
   error: null,
 });
@@ -137,6 +157,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setIsAuthenticated(false);
   };
 
+  const updateProfile = async (data: ProfileUpdateData): Promise<boolean> => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // In a real app, you would call an API here
+      // For now, we'll just update the local state
+      if (user) {
+        const updatedUser = {
+          ...user,
+          ...data,
+        };
+
+        // Save updated user to localStorage
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        setUser(updatedUser);
+        setIsLoading(false);
+        return true;
+      }
+
+      throw new Error("User not authenticated");
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "An error occurred while updating profile";
+      setError(errorMessage);
+      setIsLoading(false);
+      return false;
+    }
+  };
+
   const value = {
     user,
     isAuthenticated,
@@ -144,6 +196,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     login,
     register,
     logout,
+    updateProfile,
     error,
   };
 

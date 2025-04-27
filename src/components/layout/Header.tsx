@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext"; // Import useAuth hook
 import "./header.css";
 
 const navigation = [
@@ -11,11 +12,16 @@ const navigation = [
 ];
 
 const Header: React.FC = () => {
-  const [isLoggedIn] = useState(false);
+  const { isAuthenticated, user, logout } = useAuth(); // Use the authentication context
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+    // Optional: Redirect to home page or login page after logout
   };
 
   return (
@@ -59,7 +65,7 @@ const Header: React.FC = () => {
               </svg>
             </Link>
 
-            {isLoggedIn ? (
+            {isAuthenticated ? (
               <div className="auth-buttons">
                 <Link to="/messages" className="icon-button">
                   <svg
@@ -98,6 +104,9 @@ const Header: React.FC = () => {
                 <Link to="/dashboard" className="btn btn-primary">
                   Dashboard
                 </Link>
+                <button onClick={handleLogout} className="btn btn-outline">
+                  Logout
+                </button>
               </div>
             ) : (
               <div className="auth-buttons">
@@ -164,7 +173,7 @@ const Header: React.FC = () => {
             ))}
           </div>
           <div className="mobile-auth">
-            {isLoggedIn ? (
+            {isAuthenticated ? (
               <div className="mobile-user">
                 <div className="user-info">
                   <svg
@@ -182,9 +191,21 @@ const Header: React.FC = () => {
                     />
                   </svg>
                   <div>
-                    <div className="username">User Name</div>
-                    <div className="user-email">user@example.com</div>
+                    <div className="username">
+                      {user?.firstName || "User"} {user?.lastName || "Name"}
+                    </div>
+                    <div className="user-email">
+                      {user?.email || "user@example.com"}
+                    </div>
                   </div>
+                </div>
+                <div className="mobile-buttons">
+                  <Link to="/dashboard" className="mobile-button">
+                    Dashboard
+                  </Link>
+                  <button onClick={handleLogout} className="mobile-button">
+                    Logout
+                  </button>
                 </div>
               </div>
             ) : (
