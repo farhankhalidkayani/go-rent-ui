@@ -14,6 +14,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import SearchPage from "./pages/SearchPage";
 import ContactPage from "./pages/ContactPage";
 import FAQPage from "./pages/FAQPage";
+import RentalDetailPage from "./pages/RentalDetailPage";
 import "./App.css";
 // Import our test styles directly
 import "./test-styles.css";
@@ -120,6 +121,14 @@ function App() {
           element={
             <Layout>
               <FAQPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/rentals/:id"
+          element={
+            <Layout>
+              <RentalDetailPage />
             </Layout>
           }
         />
