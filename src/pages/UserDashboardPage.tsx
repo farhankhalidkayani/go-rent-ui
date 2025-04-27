@@ -436,6 +436,611 @@ const UserDashboardPage: React.FC = () => {
     </div>
   );
 
+  const renderBookingsTab = () => (
+    <div className="bookings-content">
+      <div className="dashboard-section-header">
+        <h2>My Bookings</h2>
+        <p className="section-subtitle">Manage your current and past rentals</p>
+      </div>
+
+      <div className="bookings-filters">
+        <div className="filter-tabs">
+          <button className="filter-tab active">All Bookings</button>
+          <button className="filter-tab">Active</button>
+          <button className="filter-tab">Upcoming</button>
+          <button className="filter-tab">Past</button>
+          <button className="filter-tab">Cancelled</button>
+        </div>
+
+        <div className="filter-controls">
+          <div className="search-input">
+            <svg
+              className="search-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <input type="text" placeholder="Search bookings" />
+          </div>
+
+          <select className="sort-select">
+            <option>Most Recent</option>
+            <option>Oldest First</option>
+            <option>Price: High to Low</option>
+            <option>Price: Low to High</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="bookings-list">
+        {rentalHistory.map((rental) => (
+          <div key={rental.id} className={`booking-card ${rental.status}`}>
+            <div className="booking-image">
+              <img src={rental.image} alt={rental.item} />
+            </div>
+            <div className="booking-details">
+              <h3 className="booking-item">{rental.item}</h3>
+              <p className="booking-category">{rental.category}</p>
+              <div className="booking-info">
+                <div className="info-group">
+                  <span className="info-label">Rental Period</span>
+                  <span className="info-value">
+                    {rental.startDate} - {rental.endDate}
+                  </span>
+                </div>
+                <div className="info-group">
+                  <span className="info-label">Total Price</span>
+                  <span className="info-value">
+                    ${rental.totalPrice.toFixed(2)}
+                  </span>
+                </div>
+                <div className="info-group">
+                  <span className="info-label">Status</span>
+                  <span className={`status-badge ${rental.status}`}>
+                    {rental.status.charAt(0).toUpperCase() +
+                      rental.status.slice(1)}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="booking-actions">
+              {rental.status === "active" && (
+                <>
+                  <Button size="sm">Return Item</Button>
+                  <Button size="sm" variant="outline">
+                    Extend Rental
+                  </Button>
+                </>
+              )}
+              {rental.status === "completed" && (
+                <Button size="sm" variant="outline">
+                  Leave Review
+                </Button>
+              )}
+              <button className="action-button">
+                <svg
+                  className="action-icon"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="pagination">
+        <button className="page-button prev">
+          <svg
+            className="page-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          Previous
+        </button>
+        <button className="page-button active">1</button>
+        <button className="page-button">2</button>
+        <button className="page-button">3</button>
+        <button className="page-button next">
+          Next
+          <svg
+            className="page-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+
+  const renderMyListingsTab = () => (
+    <div className="listings-content">
+      <div className="dashboard-section-header">
+        <h2>My Listings</h2>
+        <p className="section-subtitle">Manage your rental items</p>
+        <Link to="/create-listing">
+          <Button>Create New Listing</Button>
+        </Link>
+      </div>
+
+      <div className="listings-stats">
+        <div className="stat-card">
+          <div className="stat-value">{userListings.length}</div>
+          <div className="stat-label">Active Listings</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-value">20</div>
+          <div className="stat-label">Total Rentals</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-value">$425</div>
+          <div className="stat-label">Total Revenue</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-value">4.7</div>
+          <div className="stat-label">Avg. Rating</div>
+        </div>
+      </div>
+
+      <div className="listings-filters">
+        <div className="search-input">
+          <svg
+            className="search-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          <input type="text" placeholder="Search listings" />
+        </div>
+
+        <div className="filter-controls">
+          <select className="filter-select">
+            <option>All Categories</option>
+            <option>Electronics</option>
+            <option>Sports & Outdoors</option>
+            <option>Tools</option>
+            <option>Home & Garden</option>
+          </select>
+
+          <select className="sort-select">
+            <option>Most Recent</option>
+            <option>Oldest First</option>
+            <option>Price: High to Low</option>
+            <option>Price: Low to High</option>
+            <option>Most Popular</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="listings-grid">
+        {userListings.map((listing) => (
+          <div key={listing.id} className="listing-card">
+            <img
+              src={listing.image}
+              alt={listing.title}
+              className="listing-image"
+            />
+            <div className="listing-info">
+              <h4>{listing.title}</h4>
+              <p className="listing-price">${listing.price}/day</p>
+              <div className="listing-stats">
+                <span className="listing-stat">
+                  <svg
+                    className="listing-icon"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                    />
+                  </svg>
+                  {listing.rating}
+                </span>
+                <span className="listing-stat">
+                  <svg
+                    className="listing-icon"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  {listing.rentalCount} rentals
+                </span>
+              </div>
+            </div>
+            <div className="listing-actions">
+              <Link to={`/listings/edit/${listing.id}`}>
+                <Button size="sm" variant="outline">
+                  Edit
+                </Button>
+              </Link>
+              <Button size="sm" variant="outline">
+                Manage Availability
+              </Button>
+              <button className="action-button">
+                <svg
+                  className="action-icon"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const renderReviewsTab = () => (
+    <div className="reviews-content">
+      <div className="dashboard-section-header">
+        <h2>My Reviews</h2>
+        <p className="section-subtitle">
+          Manage reviews about you and your items
+        </p>
+      </div>
+
+      <div className="reviews-tabs">
+        <button className="review-tab active">Reviews About Me (12)</button>
+        <button className="review-tab">Reviews About My Items (28)</button>
+        <button className="review-tab">Reviews I've Written (15)</button>
+      </div>
+
+      <div className="reviews-list">
+        {[1, 2, 3, 4, 5].map((review) => (
+          <div key={review} className="review-card">
+            <div className="reviewer-info">
+              <img
+                src={`https://randomuser.me/api/portraits/${
+                  review % 2 === 0 ? "women" : "men"
+                }/${review + 20}.jpg`}
+                alt="Reviewer"
+                className="reviewer-avatar"
+              />
+              <div className="reviewer-details">
+                <h4>Jane Smith</h4>
+                <div className="review-rating">
+                  {Array(5)
+                    .fill(0)
+                    .map((_, i) => (
+                      <svg
+                        key={i}
+                        className={`star-icon ${i < 4 ? "filled" : ""}`}
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                      </svg>
+                    ))}
+                </div>
+                <span className="review-date">April 10, 2025</span>
+              </div>
+            </div>
+            <div className="review-content">
+              <p>
+                Great experience renting from Alex! The camera was in perfect
+                condition and Alex was very prompt with communication. Would
+                definitely rent from again.
+              </p>
+            </div>
+            <div className="review-item">
+              <span className="item-label">Item:</span>
+              <span className="item-name">Canon EOS 5D Mark IV</span>
+            </div>
+            <div className="review-actions">
+              <button className="action-link">Reply</button>
+              <button className="action-link">Report</button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="pagination">
+        <button className="page-button prev">
+          <svg
+            className="page-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          Previous
+        </button>
+        <button className="page-button active">1</button>
+        <button className="page-button">2</button>
+        <button className="page-button">3</button>
+        <button className="page-button next">
+          Next
+          <svg
+            className="page-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+
+  const renderTransactionsTab = () => (
+    <div className="transactions-content">
+      <div className="dashboard-section-header">
+        <h2>My Transactions</h2>
+        <p className="section-subtitle">
+          View your payment history and earnings
+        </p>
+      </div>
+
+      <div className="transactions-summary">
+        <div className="summary-card">
+          <span className="summary-title">Total Earnings</span>
+          <span className="summary-amount">$825.00</span>
+          <span className="summary-change positive">
+            <svg
+              className="change-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M5 10l7-7m0 0l7 7m-7-7v18"
+              />
+            </svg>
+            12% from last month
+          </span>
+        </div>
+        <div className="summary-card">
+          <span className="summary-title">Total Spent</span>
+          <span className="summary-amount">$450.00</span>
+          <span className="summary-change negative">
+            <svg
+              className="change-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+            5% from last month
+          </span>
+        </div>
+        <div className="summary-card">
+          <span className="summary-title">Current Balance</span>
+          <span className="summary-amount">$375.00</span>
+          <Button size="sm">Withdraw</Button>
+        </div>
+      </div>
+
+      <div className="transactions-controls">
+        <div className="transactions-total">Showing 25 of 56 transactions</div>
+        <div className="transactions-actions">
+          <select className="sort-dropdown">
+            <option>Most Recent</option>
+            <option>Oldest First</option>
+            <option>Highest Amount</option>
+            <option>Lowest Amount</option>
+          </select>
+          <button className="export-button">
+            <svg
+              className="export-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            Export CSV
+          </button>
+        </div>
+      </div>
+
+      <div className="transactions-list">
+        <table className="transactions-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Rental</th>
+              <th>Status</th>
+              <th>Amount</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...recentTransactions, ...recentTransactions].map(
+              (transaction, index) => (
+                <tr key={transaction.id + index}>
+                  <td className="transaction-date">{transaction.date}</td>
+                  <td className="transaction-description">
+                    <div>{transaction.description}</div>
+                    <div className="transaction-id">
+                      #{transaction.id + index}
+                    </div>
+                  </td>
+                  <td className="transaction-rental">
+                    Rental #{Math.floor(Math.random() * 1000)}
+                  </td>
+                  <td>
+                    <span
+                      className={`transaction-status status-${
+                        transaction.type === "earning"
+                          ? "completed"
+                          : "processing"
+                      }`}
+                    >
+                      {transaction.type === "earning"
+                        ? "Completed"
+                        : "Processing"}
+                    </span>
+                  </td>
+                  <td
+                    className={`transaction-amount ${
+                      transaction.type === "earning" ? "positive" : "negative"
+                    }`}
+                  >
+                    {transaction.type === "earning" ? "+" : "-"}$
+                    {transaction.amount.toFixed(2)}
+                  </td>
+                  <td className="transaction-actions">
+                    <button className="action-button">
+                      <svg
+                        className="action-icon"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                        />
+                      </svg>
+                    </button>
+                    <button className="action-button">
+                      <svg
+                        className="action-icon"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="pagination">
+        <button className="page-button prev">
+          <svg
+            className="page-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          Previous
+        </button>
+        <button className="page-button active">1</button>
+        <button className="page-button">2</button>
+        <button className="page-button">3</button>
+        <button className="page-button next">
+          Next
+          <svg
+            className="page-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+
   const renderSettingsTab = () => (
     <div className="settings-content">
       <div className="settings-section">
@@ -602,7 +1207,10 @@ const UserDashboardPage: React.FC = () => {
               </svg>
               My Profile
             </button>
-            <Link to="/bookings" className="nav-item">
+            <button
+              className={`nav-item ${activeTab === "bookings" ? "active" : ""}`}
+              onClick={() => setActiveTab("bookings")}
+            >
               <svg
                 className="nav-icon"
                 fill="none"
@@ -617,8 +1225,11 @@ const UserDashboardPage: React.FC = () => {
                 />
               </svg>
               My Bookings
-            </Link>
-            <Link to="/listings/my" className="nav-item">
+            </button>
+            <button
+              className={`nav-item ${activeTab === "listings" ? "active" : ""}`}
+              onClick={() => setActiveTab("listings")}
+            >
               <svg
                 className="nav-icon"
                 fill="none"
@@ -633,7 +1244,7 @@ const UserDashboardPage: React.FC = () => {
                 />
               </svg>
               My Listings
-            </Link>
+            </button>
             <Link to="/messages" className="nav-item">
               <svg
                 className="nav-icon"
@@ -684,7 +1295,10 @@ const UserDashboardPage: React.FC = () => {
               Notifications
               <span className="badge">1</span>
             </Link>
-            <Link to="/reviews" className="nav-item">
+            <button
+              className={`nav-item ${activeTab === "reviews" ? "active" : ""}`}
+              onClick={() => setActiveTab("reviews")}
+            >
               <svg
                 className="nav-icon"
                 fill="none"
@@ -699,8 +1313,13 @@ const UserDashboardPage: React.FC = () => {
                 />
               </svg>
               Reviews
-            </Link>
-            <Link to="/transactions" className="nav-item">
+            </button>
+            <button
+              className={`nav-item ${
+                activeTab === "transactions" ? "active" : ""
+              }`}
+              onClick={() => setActiveTab("transactions")}
+            >
               <svg
                 className="nav-icon"
                 fill="none"
@@ -715,7 +1334,7 @@ const UserDashboardPage: React.FC = () => {
                 />
               </svg>
               Transactions
-            </Link>
+            </button>
             <button
               className={`nav-item ${activeTab === "settings" ? "active" : ""}`}
               onClick={() => setActiveTab("settings")}
@@ -764,6 +1383,10 @@ const UserDashboardPage: React.FC = () => {
         <div className="dashboard-content">
           {activeTab === "overview" && renderOverviewTab()}
           {activeTab === "profile" && renderProfileTab()}
+          {activeTab === "bookings" && renderBookingsTab()}
+          {activeTab === "listings" && renderMyListingsTab()}
+          {activeTab === "reviews" && renderReviewsTab()}
+          {activeTab === "transactions" && renderTransactionsTab()}
           {activeTab === "settings" && renderSettingsTab()}
         </div>
       </div>
