@@ -1,6 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  safelist: [
+    // Add any classes that might be dynamically created
+    "bg-primary",
+    "text-white",
+    "hover:bg-primary-dark",
+    "bg-secondary",
+    "hover:bg-secondary-dark",
+  ],
   theme: {
     extend: {
       colors: {

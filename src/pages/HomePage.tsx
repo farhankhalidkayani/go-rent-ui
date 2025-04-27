@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/common/Button";
 import RentalCard from "../components/common/RentalCard";
+import "./HomePage.css";
 
 // Mock data for featured rentals
 const featuredRentals = [
@@ -95,44 +96,32 @@ const HomePage: React.FC = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-blue-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Rent Anything, Anywhere
-            </h1>
-            <p className="text-xl mb-8">
+      <section className="hero-section">
+        <div className="hero-container">
+          <div className="hero-content">
+            <h1 className="hero-title">Rent Anything, Anywhere</h1>
+            <p className="hero-subtitle">
               Go-Rent connects you with verified rental providers for a seamless
               and trustworthy rental experience.
             </p>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <label
-                    htmlFor="location"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Location
-                  </label>
+            <div className="search-box">
+              <div className="search-grid">
+                <div className="form-group">
+                  <label htmlFor="location">Location</label>
                   <input
                     type="text"
                     id="location"
                     placeholder="Enter your location"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                    className="form-control"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                   />
                 </div>
-                <div>
-                  <label
-                    htmlFor="category"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Category
-                  </label>
+                <div className="form-group">
+                  <label htmlFor="category">Category</label>
                   <select
                     id="category"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                    className="form-control"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
@@ -144,24 +133,19 @@ const HomePage: React.FC = () => {
                     ))}
                   </select>
                 </div>
-                <div>
-                  <label
-                    htmlFor="dates"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Rental Period
-                  </label>
+                <div className="form-group">
+                  <label htmlFor="dates">Rental Period</label>
                   <input
                     type="text"
                     id="dates"
                     placeholder="Select dates"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                    className="form-control"
                     value={dateRange}
                     onChange={(e) => setDateRange(e.target.value)}
                   />
                 </div>
               </div>
-              <div className="mt-4">
+              <div className="search-button">
                 <Button fullWidth>Search Rentals</Button>
               </div>
             </div>
@@ -170,25 +154,19 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Featured Categories */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Popular Categories
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <section className="categories-section">
+        <div className="hero-container">
+          <h2 className="section-title">Popular Categories</h2>
+          <div className="categories-grid">
             {categories.map((category) => (
               <Link
                 key={category.id}
                 to={`/categories/${category.id}`}
-                className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300"
+                className="category-card"
               >
-                <div className="text-4xl mb-2">{category.icon}</div>
-                <h3 className="text-lg font-medium text-gray-900">
-                  {category.name}
-                </h3>
-                <p className="text-sm text-gray-500">
-                  {category.count} listings
-                </p>
+                <div className="category-icon">{category.icon}</div>
+                <h3 className="category-name">{category.name}</h3>
+                <p className="category-count">{category.count} listings</p>
               </Link>
             ))}
           </div>
@@ -196,18 +174,15 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Featured Rentals */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold">Featured Rentals</h2>
-            <Link
-              to="/browse"
-              className="text-primary hover:text-primary-dark font-medium"
-            >
+      <section className="featured-section">
+        <div className="hero-container">
+          <div className="section-header">
+            <h2 className="section-title">Featured Rentals</h2>
+            <Link to="/browse" className="view-all-link">
               View All
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="rentals-grid">
             {featuredRentals.map((rental) => (
               <RentalCard
                 key={rental.id}
@@ -225,17 +200,15 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            How Go-Rent Works
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-white w-16 h-16 mx-auto rounded-full flex items-center justify-center shadow-md mb-4">
+      <section className="how-it-works">
+        <div className="hero-container">
+          <h2 className="section-title">How Go-Rent Works</h2>
+          <div className="steps-grid">
+            <div className="step">
+              <div className="step-icon-wrapper">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8 text-primary"
+                  className="step-icon"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -248,16 +221,16 @@ const HomePage: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Find What You Need</h3>
-              <p className="text-gray-600">
+              <h3 className="step-title">Find What You Need</h3>
+              <p className="step-description">
                 Search through thousands of verified rental options near you.
               </p>
             </div>
-            <div className="text-center">
-              <div className="bg-white w-16 h-16 mx-auto rounded-full flex items-center justify-center shadow-md mb-4">
+            <div className="step">
+              <div className="step-icon-wrapper">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8 text-primary"
+                  className="step-icon"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -270,17 +243,17 @@ const HomePage: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Book Securely</h3>
-              <p className="text-gray-600">
+              <h3 className="step-title">Book Securely</h3>
+              <p className="step-description">
                 Reserve items for your selected dates with secure payment
                 processing.
               </p>
             </div>
-            <div className="text-center">
-              <div className="bg-white w-16 h-16 mx-auto rounded-full flex items-center justify-center shadow-md mb-4">
+            <div className="step">
+              <div className="step-icon-wrapper">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8 text-primary"
+                  className="step-icon"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -293,13 +266,13 @@ const HomePage: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Enjoy & Return</h3>
-              <p className="text-gray-600">
+              <h3 className="step-title">Enjoy & Return</h3>
+              <p className="step-description">
                 Pick up your rental, enjoy it, and return it when you're done.
               </p>
             </div>
           </div>
-          <div className="text-center mt-12">
+          <div className="learn-more">
             <Link to="/how-it-works">
               <Button size="lg">Learn More</Button>
             </Link>
@@ -308,18 +281,16 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Join Platform Section */}
-      <section className="py-16 bg-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <section className="join-section">
+        <div className="hero-container">
+          <div className="join-grid">
             <div>
-              <h2 className="text-3xl font-bold mb-4">
-                Ready to Start Renting?
-              </h2>
-              <p className="text-xl mb-6">
+              <h2 className="join-title">Ready to Start Renting?</h2>
+              <p className="join-description">
                 Join thousands of users who are already saving money by renting
                 instead of buying.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="join-buttons">
                 <Link to="/register">
                   <Button variant="secondary" size="lg">
                     Sign Up Now
@@ -329,18 +300,18 @@ const HomePage: React.FC = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="bg-transparent text-white border-white hover:bg-white hover:text-primary"
+                    className="btn-outline-white"
                   >
                     Browse Rentals
                   </Button>
                 </Link>
               </div>
             </div>
-            <div className="hidden md:block">
+            <div className="join-image-container">
               <img
                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
                 alt="Happy people renting items"
-                className="rounded-lg shadow-xl"
+                className="join-image"
               />
             </div>
           </div>
@@ -348,29 +319,27 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            What Our Users Say
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="mr-4">
+      <section className="testimonials-section">
+        <div className="hero-container">
+          <h2 className="section-title">What Our Users Say</h2>
+          <div className="testimonials-grid">
+            <div className="testimonial-card">
+              <div className="testimonial-header">
+                <div className="testimonial-image">
                   <img
                     src="https://randomuser.me/api/portraits/women/32.jpg"
                     alt="User"
-                    className="h-12 w-12 rounded-full"
+                    className="testimonial-avatar"
                   />
                 </div>
                 <div>
-                  <h3 className="font-medium">Sarah Johnson</h3>
-                  <div className="flex text-yellow-400">
+                  <h3 className="testimonial-name">Sarah Johnson</h3>
+                  <div className="testimonial-stars">
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
+                        className="star-icon"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -380,29 +349,29 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-gray-600">
+              <p className="testimonial-text">
                 "Go-Rent made it so easy to find and rent a high-quality camera
                 for my vacation. The process was seamless and the deposit was
                 returned promptly."
               </p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="mr-4">
+            <div className="testimonial-card">
+              <div className="testimonial-header">
+                <div className="testimonial-image">
                   <img
                     src="https://randomuser.me/api/portraits/men/44.jpg"
                     alt="User"
-                    className="h-12 w-12 rounded-full"
+                    className="testimonial-avatar"
                   />
                 </div>
                 <div>
-                  <h3 className="font-medium">Michael Brown</h3>
-                  <div className="flex text-yellow-400">
+                  <h3 className="testimonial-name">Michael Brown</h3>
+                  <div className="testimonial-stars">
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
+                        className="star-icon"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -412,29 +381,29 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-gray-600">
+              <p className="testimonial-text">
                 "As a rental provider, Go-Rent has helped me earn extra income
                 from items I wasn't using regularly. The verification process
                 gives renters confidence."
               </p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="mr-4">
+            <div className="testimonial-card">
+              <div className="testimonial-header">
+                <div className="testimonial-image">
                   <img
                     src="https://randomuser.me/api/portraits/women/68.jpg"
                     alt="User"
-                    className="h-12 w-12 rounded-full"
+                    className="testimonial-avatar"
                   />
                 </div>
                 <div>
-                  <h3 className="font-medium">Emily Rodriguez</h3>
-                  <div className="flex text-yellow-400">
+                  <h3 className="testimonial-name">Emily Rodriguez</h3>
+                  <div className="testimonial-stars">
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
+                        className="star-icon"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -444,7 +413,7 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-gray-600">
+              <p className="testimonial-text">
                 "I saved hundreds of dollars by renting a power washer for my
                 weekend project instead of buying one. The quality was great and
                 pickup/drop-off was convenient."

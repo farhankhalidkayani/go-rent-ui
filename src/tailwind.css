@@ -1,0 +1,31 @@
+/* Import Tailwind directly and explicitly */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Add some test utility classes that should work without Tailwind processing */
+.tw-bg-blue {
+  background-color: blue !important;
+}
+
+.tw-text-white {
+  color: white !important;
+}
+
+.tw-p-4 {
+  padding: 1rem !important;
+}
+
+.tw-rounded {
+  border-radius: 0.25rem !important;
+}
+
+/* Custom Tailwind classes can go here */
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded;
+  }
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark;
+  }
+}

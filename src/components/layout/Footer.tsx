@@ -1,87 +1,82 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./footer.css";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-800 text-white">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">Go-Rent</h3>
-            <p className="text-gray-300 text-sm">
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-grid">
+          <div className="footer-column">
+            <h3 className="footer-title">Go-Rent</h3>
+            <p className="footer-description">
               Go-Rent is a web and mobile-based rental marketplace designed to
               connect users with verified rental providers in a seamless and
               trustworthy manner.
             </p>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+          <div className="footer-column">
+            <h3 className="footer-heading">Quick Links</h3>
+            <ul className="footer-links">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-white">
+                <Link to="/" className="footer-link">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/browse" className="text-gray-300 hover:text-white">
+                <Link to="/browse" className="footer-link">
                   Browse
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/categories"
-                  className="text-gray-300 hover:text-white"
-                >
+                <Link to="/categories" className="footer-link">
                   Categories
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/how-it-works"
-                  className="text-gray-300 hover:text-white"
-                >
+                <Link to="/how-it-works" className="footer-link">
                   How It Works
                 </Link>
               </li>
             </ul>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Support</h3>
-            <ul className="space-y-2">
+          <div className="footer-column">
+            <h3 className="footer-heading">Support</h3>
+            <ul className="footer-links">
               <li>
-                <Link to="/faq" className="text-gray-300 hover:text-white">
+                <Link to="/faq" className="footer-link">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-300 hover:text-white">
+                <Link to="/contact" className="footer-link">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-gray-300 hover:text-white">
+                <Link to="/terms" className="footer-link">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="text-gray-300 hover:text-white">
+                <Link to="/privacy" className="footer-link">
                   Privacy Policy
                 </Link>
               </li>
             </ul>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Connect with Us</h3>
-            <div className="flex space-x-4">
+          <div className="footer-column">
+            <h3 className="footer-heading">Connect with Us</h3>
+            <div className="social-icons">
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
+                className="social-icon"
               >
                 <span className="sr-only">Facebook</span>
                 <svg
-                  className="h-6 w-6"
+                  className="icon"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -97,11 +92,11 @@ const Footer: React.FC = () => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
+                className="social-icon"
               >
                 <span className="sr-only">Instagram</span>
                 <svg
-                  className="h-6 w-6"
+                  className="icon"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -117,11 +112,11 @@ const Footer: React.FC = () => {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
+                className="social-icon"
               >
                 <span className="sr-only">Twitter</span>
                 <svg
-                  className="h-6 w-6"
+                  className="icon"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -132,8 +127,8 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-700">
-          <p className="text-center text-gray-400">
+        <div className="footer-bottom">
+          <p className="copyright">
             &copy; {new Date().getFullYear()} Go-Rent. All rights reserved.
           </p>
         </div>

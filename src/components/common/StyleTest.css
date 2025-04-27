@@ -1,0 +1,25 @@
+/* StyleTest Component Styles */
+.style-test-container {
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px solid black;
+}
+
+.style-test-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.blue-box {
+  background-color: #3498db;
+  color: white;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+}
+
+.bold-text {
+  font-weight: bold;
+  font-size: 1.25rem;
+}

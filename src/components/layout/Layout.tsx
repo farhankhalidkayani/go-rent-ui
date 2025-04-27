@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import "./layout.css"; // Import layout-specific styles
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,9 +9,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="layout-container">
       <Header />
-      <main className="flex-grow">{children}</main>
+      <main className="main-content">{children}</main>
       <Footer />
     </div>
   );

@@ -6,6 +6,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import CreateListingPage from "./pages/CreateListingPage";
 import "./App.css";
+// Import our test styles directly
+import "./test-styles.css";
 
 function App() {
   return (
