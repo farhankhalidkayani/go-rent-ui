@@ -21,7 +21,7 @@ const featuredRentals = [
     title: "2023 Tesla Model Y",
     price: 120,
     image:
-      "https://images.unsplash.com/photo-1619767886558-efdc7e108768?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1617704548623-0ef2fe6c25a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
     location: "Los Angeles, CA",
     rating: 4.9,
     category: "Cars",
@@ -31,7 +31,7 @@ const featuredRentals = [
     title: "High-end Gaming Laptop",
     price: 35,
     image:
-      "https://images.unsplash.com/photo-1603302576837-37561b2e2db8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
     location: "Austin, TX",
     rating: 4.7,
     category: "Electronics",

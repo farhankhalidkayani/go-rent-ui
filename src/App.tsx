@@ -10,6 +10,9 @@ import BrowsePage from "./pages/BrowsePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
+import CategoriesPage from "./pages/CategoriesPage";
+import SearchPage from "./pages/SearchPage";
+import ContactPage from "./pages/ContactPage";
 import "./App.css";
 // Import our test styles directly
 import "./test-styles.css";
@@ -76,6 +79,38 @@ function App() {
           element={
             <Layout>
               <TermsPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/categories"
+          element={
+            <Layout>
+              <CategoriesPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/categories/:categoryId"
+          element={
+            <Layout>
+              <CategoriesPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <Layout>
+              <SearchPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <Layout>
+              <ContactPage />
             </Layout>
           }
         />
