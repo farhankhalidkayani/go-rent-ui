@@ -1,30 +1,33 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
-import Select from "../components/common/Select";
+import { useAuth } from "../context/AuthContext";
 import "./RegisterPage.css";
 
 const RegisterPage: React.FC = () => {
+  const navigate = useNavigate();
+  const { register, error: authError } = useAuth();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    phone: "",
     password: "",
     confirmPassword: "",
-    userType: "",
+    agreeToTerms: false,
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
 
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
@@ -47,80 +50,97 @@ const RegisterPage: React.FC = () => {
       newErrors.email = "Email is invalid";
     }
 
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    }
-
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (formData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters";
+      newErrors.password = "Password must be at least 8 characters long";
     }
 
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match";
     }
 
-    if (!formData.userType) {
-      newErrors.userType = "Please select a user type";
+    if (!formData.agreeToTerms) {
+      newErrors.agreeToTerms = "You must agree to the Terms and Conditions";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (validateForm()) {
-      // Submit form data to backend
-      console.log("Form data submitted:", formData);
-      // Here you would typically make an API call to register the user
-      alert(
-        "Registration successful! Please check your email to verify your account."
-      );
+      setIsSubmitting(true);
+
+      try {
+        // Call the register method from AuthContext
+        const success = await register({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+        });
+
+        if (success) {
+          // Redirect to login page after successful registration
+          navigate("/login", {
+            state: { message: "Registration successful! Please log in." },
+          });
+        }
+      } catch (err) {
+        console.error("Registration error:", err);
+        setErrors((prev) => ({
+          ...prev,
+          general: "Failed to register. Please try again.",
+        }));
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
-
-  const userTypeOptions = [
-    { value: "renter", label: "I want to rent items (Renter)" },
-    { value: "provider", label: "I want to list items for rent (Provider)" },
-    { value: "both", label: "Both" },
-  ];
 
   return (
     <div className="auth-page">
       <div className="auth-container">
-        <h1 className="auth-title">Create Your Go-Rent Account</h1>
+        <h1 className="auth-title">Create an Account</h1>
         <p className="auth-subtitle">
-          Join our community and start renting or listing items today.
+          Join Go-Rent today to start renting or listing items in your area.
         </p>
 
         <form onSubmit={handleSubmit}>
-          <div className="form-grid">
-            <div className="form-row">
+          {(errors.general || authError) && (
+            <div className="error-message">{errors.general || authError}</div>
+          )}
+
+          <div className="name-row">
+            <div className="form-row half">
               <Input
                 id="firstName"
                 name="firstName"
                 label="First Name"
+                type="text"
                 placeholder="Enter your first name"
                 value={formData.firstName}
                 onChange={handleChange}
                 error={errors.firstName}
                 required
+                disabled={isSubmitting}
               />
             </div>
-
-            <div className="form-row">
+            <div className="form-row half">
               <Input
                 id="lastName"
                 name="lastName"
                 label="Last Name"
+                type="text"
                 placeholder="Enter your last name"
                 value={formData.lastName}
                 onChange={handleChange}
                 error={errors.lastName}
                 required
+                disabled={isSubmitting}
               />
             </div>
           </div>
@@ -136,19 +156,7 @@ const RegisterPage: React.FC = () => {
               onChange={handleChange}
               error={errors.email}
               required
-            />
-          </div>
-
-          <div className="form-row">
-            <Input
-              id="phone"
-              name="phone"
-              label="Phone Number"
-              placeholder="Enter your phone number"
-              value={formData.phone}
-              onChange={handleChange}
-              error={errors.phone}
-              required
+              disabled={isSubmitting}
             />
           </div>
 
@@ -156,13 +164,14 @@ const RegisterPage: React.FC = () => {
             <Input
               id="password"
               name="password"
-              label="Password"
+              label="Create Password"
               type="password"
-              placeholder="Create a password"
+              placeholder="Create a secure password"
               value={formData.password}
               onChange={handleChange}
               error={errors.password}
               required
+              disabled={isSubmitting}
             />
           </div>
 
@@ -177,50 +186,46 @@ const RegisterPage: React.FC = () => {
               onChange={handleChange}
               error={errors.confirmPassword}
               required
+              disabled={isSubmitting}
             />
           </div>
 
-          <div className="form-row">
-            <Select
-              id="userType"
-              name="userType"
-              label="I am registering as"
-              options={userTypeOptions}
-              value={formData.userType}
+          <div className="form-check-row terms-check">
+            <input
+              id="agreeToTerms"
+              name="agreeToTerms"
+              type="checkbox"
+              checked={formData.agreeToTerms}
               onChange={handleChange}
-              error={errors.userType}
-              required
+              className="checkbox"
+              disabled={isSubmitting}
             />
-          </div>
-
-          <div className="form-row">
-            <Button type="submit" fullWidth>
-              Create Account
-            </Button>
-          </div>
-
-          <div className="auth-footnote">
-            <p>
-              By creating an account, you agree to our{" "}
-              <Link to="/terms" className="auth-link">
-                Terms of Service
+            <label htmlFor="agreeToTerms" className="checkbox-label">
+              I agree to the{" "}
+              <Link to="/terms" className="terms-link">
+                Terms and Conditions
               </Link>{" "}
               and{" "}
-              <Link to="/privacy" className="auth-link">
+              <Link to="/privacy" className="terms-link">
                 Privacy Policy
               </Link>
-            </p>
+            </label>
           </div>
-        </form>
+          {errors.agreeToTerms && (
+            <div className="checkbox-error">{errors.agreeToTerms}</div>
+          )}
 
-        <div className="auth-footer">
-          <p className="auth-footer-text">
+          <Button type="submit" fullWidth disabled={isSubmitting}>
+            {isSubmitting ? "Creating Account..." : "Create Account"}
+          </Button>
+
+          <p className="auth-footer">
             Already have an account?{" "}
             <Link to="/login" className="auth-link">
               Sign In
             </Link>
           </p>
-        </div>
+        </form>
       </div>
     </div>
   );

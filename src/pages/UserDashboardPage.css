@@ -1,0 +1,767 @@
+.user-dashboard-page {
+  padding: 2rem 0;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 60px);
+}
+
+.dashboard-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+/* Sidebar Styling */
+.dashboard-sidebar {
+  flex: 0 0 250px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+  position: sticky;
+  top: 1rem;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.sidebar-user-info h3 {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.user-email {
+  font-size: 0.75rem;
+  color: #717171;
+  margin: 0.25rem 0 0 0;
+}
+
+.sidebar-nav {
+  padding: 1rem 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-item:hover {
+  background-color: #f8f9fa;
+  color: #0052cc;
+}
+
+.nav-item.active {
+  background-color: #e8f0fe;
+  color: #0052cc;
+  border-left: 3px solid #0052cc;
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.75rem;
+}
+
+.badge {
+  background-color: #ff4757;
+  color: white;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  margin-left: auto;
+}
+
+.sidebar-divider {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 1rem 0;
+}
+
+.nav-item.logout {
+  color: #ff4757;
+}
+
+.nav-item.logout:hover {
+  background-color: #ffeeee;
+}
+
+/* Main Content Styling */
+.dashboard-content {
+  flex: 1;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+}
+
+/* Dashboard Overview */
+.dashboard-welcome {
+  margin-bottom: 2rem;
+}
+
+.dashboard-welcome h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.last-login {
+  color: #717171;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #6c5ce7, #0084ff);
+  border-radius: 8px;
+  padding: 1rem;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 84, 255, 0.15);
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* Dashboard Sections */
+.dashboard-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-section {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  border: 1px solid #eee;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.view-all {
+  font-size: 0.8rem;
+  color: #0052cc;
+  text-decoration: none;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+/* Rentals List */
+.rentals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rental-item {
+  display: flex;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.rental-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.rental-info {
+  padding: 0.5rem 1rem;
+  flex: 1;
+}
+
+.rental-info h4 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.rental-dates {
+  font-size: 0.75rem;
+  color: #717171;
+  margin: 0.25rem 0;
+}
+
+.rental-status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.rental-status.active {
+  background-color: #e3fcef;
+  color: #00b894;
+}
+
+.rental-status.pending {
+  background-color: #ffeaa7;
+  color: #fdcb6e;
+}
+
+.rental-status.completed {
+  background-color: #e8f0fe;
+  color: #0052cc;
+}
+
+/* Notifications List */
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.notification-item {
+  display: flex;
+  padding: 0.75rem;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+  align-items: center;
+  position: relative;
+}
+
+.notification-item.unread {
+  background-color: #e8f0fe;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-message {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.notification-date {
+  font-size: 0.7rem;
+  color: #717171;
+}
+
+.notification-badge {
+  width: 8px;
+  height: 8px;
+  background-color: #0052cc;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}
+
+.notification-item.priority-high .notification-message {
+  font-weight: 600;
+}
+
+/* Listings Grid */
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.listing-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.listing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.listing-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.listing-info {
+  padding: 0.75rem;
+}
+
+.listing-info h4 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.listing-price {
+  color: #0052cc;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+.listing-stats {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: #717171;
+  margin-top: 0.5rem;
+}
+
+.listing-stat {
+  display: flex;
+  align-items: center;
+}
+
+.listing-icon {
+  width: 12px;
+  height: 12px;
+  margin-right: 0.25rem;
+}
+
+.listing-actions {
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+}
+
+.create-listing-cta {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+/* Transactions List */
+.transactions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction-description {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.transaction-date {
+  font-size: 0.7rem;
+  color: #717171;
+}
+
+.transaction-amount {
+  font-weight: 600;
+}
+
+.transaction-item.payment .transaction-amount {
+  color: #ff4757;
+}
+
+.transaction-item.earning .transaction-amount {
+  color: #00b894;
+}
+
+/* Empty States */
+.empty-state {
+  text-align: center;
+  padding: 2rem 0;
+  color: #717171;
+}
+
+.empty-state p {
+  margin-bottom: 1rem;
+}
+
+/* Profile Tab */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.profile-avatar-container {
+  position: relative;
+  margin-right: 2rem;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.change-avatar-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #0052cc;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.edit-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.profile-user-info h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.profile-location {
+  display: flex;
+  align-items: center;
+  color: #717171;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.location-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 0.4rem;
+}
+
+.member-since {
+  font-size: 0.85rem;
+  color: #717171;
+  margin: 0.25rem 0 0.75rem 0;
+}
+
+.verification-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.verification-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.verification-badge.email {
+  background-color: #e3fcef;
+  color: #00b894;
+}
+
+.verification-badge.phone {
+  background-color: #e8f0fe;
+  color: #0052cc;
+}
+
+.verification-badge.government {
+  background-color: #ffd8be;
+  color: #ff7b25;
+}
+
+.profile-sections {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.profile-section {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.profile-bio {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.edit-bio-btn,
+.edit-info-btn {
+  margin-top: 1rem;
+}
+
+.profile-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  color: #717171;
+}
+
+.info-value {
+  font-size: 0.9rem;
+}
+
+/* Settings Tab */
+.settings-section {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.settings-section:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.settings-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.settings-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.option-label h4 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.option-description {
+  font-size: 0.8rem;
+  color: #717171;
+  margin: 0.25rem 0 0 0;
+  max-width: 300px;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #0052cc;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(24px);
+}
+
+.manage-button {
+  padding: 0.4rem 0.8rem;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.manage-button:hover {
+  background-color: #f1f1f1;
+}
+
+.settings-link {
+  display: block;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+  color: #333;
+  text-decoration: none;
+  background-color: #f8f9fa;
+  transition: all 0.2s;
+}
+
+.settings-link:hover {
+  background-color: #eaeaea;
+}
+
+.section-title.danger {
+  color: #ff4757;
+}
+
+.danger-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.danger-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #fff8f8;
+  border-radius: 6px;
+}
+
+.danger-button {
+  color: #ff4757;
+  border-color: #ffccd1;
+}
+
+.danger-button:hover {
+  background-color: #ffeeee;
+}
+
+/* Responsive Styling */
+@media (max-width: 992px) {
+  .dashboard-container {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+
+  .dashboard-sidebar {
+    flex: 0 0 auto;
+    position: static;
+    width: 100%;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-avatar-container {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-sections {
+    grid-template-columns: 1fr;
+  }
+
+  .listings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-info-grid {
+    grid-template-columns: 1fr;
+  }
+}

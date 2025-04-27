@@ -12,6 +12,7 @@ interface InputProps {
   error?: string;
   required?: boolean;
   className?: string;
+  disabled?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -25,6 +26,7 @@ const Input: React.FC<InputProps> = ({
   error,
   required = false,
   className = "",
+  disabled = false,
 }) => {
   return (
     <div className={`input-container ${className}`}>
@@ -39,6 +41,7 @@ const Input: React.FC<InputProps> = ({
         onChange={onChange}
         placeholder={placeholder}
         required={required}
+        disabled={disabled}
         className={`input-field ${error ? "input-error" : ""}`}
       />
       {error && <p className="error-message">{error}</p>}

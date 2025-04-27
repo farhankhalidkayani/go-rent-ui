@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext"; // Import AuthProvider
 import Layout from "./components/layout/Layout";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -16,128 +17,148 @@ import SearchPage from "./pages/SearchPage";
 import ContactPage from "./pages/ContactPage";
 import FAQPage from "./pages/FAQPage";
 import RentalDetailPage from "./pages/RentalDetailPage";
+import MessagesPage from "./pages/MessagesPage";
+import UserDashboardPage from "./pages/UserDashboardPage";
 import "./App.css";
 // Import our test styles directly
 import "./test-styles.css";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Auth Pages (without Layout) */}
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Auth Pages (without Layout) */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
-        {/* Pages with Layout */}
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <HomePage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/create-listing"
-          element={
-            <Layout>
-              <CreateListingPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/how-it-works"
-          element={
-            <Layout>
-              <HowItWorksPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/browse"
-          element={
-            <Layout>
-              <BrowsePage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <Layout>
-              <AboutUsPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/privacy"
-          element={
-            <Layout>
-              <PrivacyPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/terms"
-          element={
-            <Layout>
-              <TermsPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/categories"
-          element={
-            <Layout>
-              <CategoriesPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/categories/:categoryId"
-          element={
-            <Layout>
-              <CategoriesPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/search"
-          element={
-            <Layout>
-              <SearchPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <Layout>
-              <ContactPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/faq"
-          element={
-            <Layout>
-              <FAQPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/rentals/:id"
-          element={
-            <Layout>
-              <RentalDetailPage />
-            </Layout>
-          }
-        />
+          {/* Pages with Layout */}
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <HomePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/create-listing"
+            element={
+              <Layout>
+                <CreateListingPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/how-it-works"
+            element={
+              <Layout>
+                <HowItWorksPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/browse"
+            element={
+              <Layout>
+                <BrowsePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Layout>
+                <AboutUsPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/privacy"
+            element={
+              <Layout>
+                <PrivacyPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/terms"
+            element={
+              <Layout>
+                <TermsPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/categories"
+            element={
+              <Layout>
+                <CategoriesPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/categories/:categoryId"
+            element={
+              <Layout>
+                <CategoriesPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/search"
+            element={
+              <Layout>
+                <SearchPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <Layout>
+                <ContactPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/faq"
+            element={
+              <Layout>
+                <FAQPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/rentals/:id"
+            element={
+              <Layout>
+                <RentalDetailPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/messages"
+            element={
+              <Layout>
+                <MessagesPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <Layout>
+                <UserDashboardPage />
+              </Layout>
+            }
+          />
 
-        {/* Additional routes to be added later */}
-      </Routes>
-    </Router>
+          {/* Additional routes to be added later */}
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
