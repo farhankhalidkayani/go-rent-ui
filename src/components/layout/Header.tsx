@@ -84,7 +84,7 @@ const Header: React.FC = () => {
                   </svg>
                 </Link>
                 <div className="user-profile">
-                  <Link to="/profile" className="icon-button">
+                  <Link to="/dashboard?tab=profile" className="icon-button">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="user-icon"
@@ -202,6 +202,9 @@ const Header: React.FC = () => {
                 <div className="mobile-buttons">
                   <Link to="/dashboard" className="mobile-button">
                     Dashboard
+                  </Link>
+                  <Link to="/dashboard?tab=profile" className="mobile-button">
+                    My Profile
                   </Link>
                   <button onClick={handleLogout} className="mobile-button">
                     Logout
