@@ -13,6 +13,7 @@ import TermsPage from "./pages/TermsPage";
 import CategoriesPage from "./pages/CategoriesPage";
 import SearchPage from "./pages/SearchPage";
 import ContactPage from "./pages/ContactPage";
+import FAQPage from "./pages/FAQPage";
 import "./App.css";
 // Import our test styles directly
 import "./test-styles.css";
@@ -111,6 +112,14 @@ function App() {
           element={
             <Layout>
               <ContactPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/faq"
+          element={
+            <Layout>
+              <FAQPage />
             </Layout>
           }
         />
