@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
 import Select from "../components/common/Select";
+import "./CreateListingPage.css";
 
 const categoryOptions = [
   { value: "cars", label: "Cars" },
@@ -173,43 +174,42 @@ const CreateListingPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-50 py-12">
-      <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-6">Create New Rental Listing</h1>
+    <div className="create-listing-page">
+      <div className="create-listing-container">
+        <h1 className="create-listing-title">Create New Rental Listing</h1>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-6">
-            <h2 className="text-lg font-medium text-gray-800 mb-4">
-              Basic Information
-            </h2>
-            <Input
-              id="title"
-              name="title"
-              label="Title"
-              placeholder="Enter a clear title for your item"
-              value={formData.title}
-              onChange={handleChange}
-              error={errors.title}
-              required
-            />
+          <div className="form-section">
+            <h2 className="section-title">Basic Information</h2>
+            <div className="form-row">
+              <Input
+                id="title"
+                name="title"
+                label="Title"
+                placeholder="Enter a clear title for your item"
+                value={formData.title}
+                onChange={handleChange}
+                error={errors.title}
+                required
+              />
+            </div>
 
-            <Select
-              id="category"
-              name="category"
-              label="Category"
-              options={categoryOptions}
-              value={formData.category}
-              onChange={handleChange}
-              error={errors.category}
-              required
-            />
+            <div className="form-row">
+              <Select
+                id="category"
+                name="category"
+                label="Category"
+                options={categoryOptions}
+                value={formData.category}
+                onChange={handleChange}
+                error={errors.category}
+                required
+              />
+            </div>
 
-            <div className="mb-4">
-              <label
-                htmlFor="description"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Description <span className="text-red-500">*</span>
+            <div className="form-row">
+              <label htmlFor="description" className="textarea-label">
+                Description <span className="required">*</span>
               </label>
               <textarea
                 id="description"
@@ -218,89 +218,92 @@ const CreateListingPage: React.FC = () => {
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="Describe your item in detail including features, specifications, and any usage instructions"
-                className={`w-full px-3 py-2 border ${
-                  errors.description ? "border-red-500" : "border-gray-300"
-                } rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary`}
+                className={`textarea-field ${
+                  errors.description ? "textarea-error" : ""
+                }`}
                 required
               ></textarea>
               {errors.description && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.description}
-                </p>
+                <p className="error-text">{errors.description}</p>
               )}
             </div>
           </div>
 
-          <div className="mb-6">
-            <h2 className="text-lg font-medium text-gray-800 mb-4">Pricing</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Input
-                id="price"
-                name="price"
-                label="Daily Rate ($)"
-                type="number"
-                placeholder="0.00"
-                value={formData.price}
-                onChange={handleChange}
-                error={errors.price}
-                required
-              />
+          <div className="form-section">
+            <h2 className="section-title">Pricing</h2>
+            <div className="form-grid">
+              <div className="form-row">
+                <Input
+                  id="price"
+                  name="price"
+                  label="Daily Rate ($)"
+                  type="number"
+                  placeholder="0.00"
+                  value={formData.price}
+                  onChange={handleChange}
+                  error={errors.price}
+                  required
+                />
+              </div>
 
-              <Input
-                id="securityDeposit"
-                name="securityDeposit"
-                label="Security Deposit ($) (Optional)"
-                type="number"
-                placeholder="0.00"
-                value={formData.securityDeposit}
-                onChange={handleChange}
-                error={errors.securityDeposit}
-              />
+              <div className="form-row">
+                <Input
+                  id="securityDeposit"
+                  name="securityDeposit"
+                  label="Security Deposit ($) (Optional)"
+                  type="number"
+                  placeholder="0.00"
+                  value={formData.securityDeposit}
+                  onChange={handleChange}
+                  error={errors.securityDeposit}
+                />
+              </div>
             </div>
           </div>
 
-          <div className="mb-6">
-            <h2 className="text-lg font-medium text-gray-800 mb-4">
-              Item Details
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Select
-                id="condition"
-                name="condition"
-                label="Condition"
-                options={conditionOptions}
-                value={formData.condition}
-                onChange={handleChange}
-                error={errors.condition}
-                required
-              />
+          <div className="form-section">
+            <h2 className="section-title">Item Details</h2>
+            <div className="form-grid">
+              <div className="form-row">
+                <Select
+                  id="condition"
+                  name="condition"
+                  label="Condition"
+                  options={conditionOptions}
+                  value={formData.condition}
+                  onChange={handleChange}
+                  error={errors.condition}
+                  required
+                />
+              </div>
 
-              <Input
-                id="location"
-                name="location"
-                label="Location"
-                placeholder="City, State"
-                value={formData.location}
-                onChange={handleChange}
-                error={errors.location}
-                required
-              />
+              <div className="form-row">
+                <Input
+                  id="location"
+                  name="location"
+                  label="Location"
+                  placeholder="City, State"
+                  value={formData.location}
+                  onChange={handleChange}
+                  error={errors.location}
+                  required
+                />
+              </div>
             </div>
           </div>
 
-          <div className="mb-6">
-            <h2 className="text-lg font-medium text-gray-800 mb-4">Images</h2>
-            <div className="mb-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Upload Photos <span className="text-red-500">*</span>{" "}
-                <span className="text-gray-500 font-normal">
-                  (Max 5 images)
-                </span>
+          <div className="form-section">
+            <h2 className="section-title">Images</h2>
+            <div className="image-upload-container">
+              <label className="image-label">
+                Upload Photos <span className="required">*</span>{" "}
+                <span className="image-hint">(Max 5 images)</span>
               </label>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                <div className="space-y-1 text-center">
+
+              <div className="drop-zone">
+                <div className="upload-text">
                   <svg
-                    className="mx-auto h-12 w-12 text-gray-400"
+                    className="upload-icon"
                     stroke="currentColor"
                     fill="none"
                     viewBox="0 0 48 48"
@@ -313,56 +316,48 @@ const CreateListingPage: React.FC = () => {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <div className="flex text-sm text-gray-600">
-                    <label
-                      htmlFor="images"
-                      className="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-primary-dark focus:outline-none"
-                    >
-                      <span>Upload images</span>
-                      <input
-                        id="images"
-                        name="images"
-                        type="file"
-                        className="sr-only"
-                        accept="image/*"
-                        multiple
-                        onChange={handleImageChange}
-                        disabled={formData.images.length >= 5}
-                      />
+                  <div className="file-upload-text">
+                    <label htmlFor="images" className="upload-link">
+                      Upload images
                     </label>
-                    <p className="pl-1">or drag and drop</p>
+                    <input
+                      id="images"
+                      name="images"
+                      type="file"
+                      className="hidden-input"
+                      accept="image/*"
+                      multiple
+                      onChange={handleImageChange}
+                      disabled={formData.images.length >= 5}
+                    />
+                    <span> or drag and drop</span>
                   </div>
-                  <p className="text-xs text-gray-500">
-                    PNG, JPG, GIF up to 5MB each
-                  </p>
+                  <p className="file-hint">PNG, JPG, GIF up to 5MB each</p>
                 </div>
               </div>
-              {errors.images && (
-                <p className="mt-1 text-sm text-red-500">{errors.images}</p>
-              )}
+
+              {errors.images && <p className="error-text">{errors.images}</p>}
             </div>
 
             {imagePreviews.length > 0 && (
-              <div className="mt-4">
-                <h3 className="text-sm font-medium text-gray-700 mb-2">
-                  Image Previews
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <div className="previews-container">
+                <h3 className="previews-title">Image Previews</h3>
+                <div className="image-grid">
                   {imagePreviews.map((src, index) => (
-                    <div key={index} className="relative">
+                    <div key={index} className="image-preview">
                       <img
                         src={src}
                         alt={`Preview ${index + 1}`}
-                        className="h-24 w-full object-cover rounded-md"
+                        className="preview-image"
                       />
                       <button
                         type="button"
                         onClick={() => removeImage(index)}
-                        className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 transform translate-x-1/3 -translate-y-1/3"
+                        className="remove-button"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
+                          className="remove-icon"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -382,7 +377,7 @@ const CreateListingPage: React.FC = () => {
             )}
           </div>
 
-          <div className="border-t pt-6 mt-8">
+          <div className="form-footer">
             <Button type="submit" fullWidth disabled={isSubmitting}>
               {isSubmitting ? "Creating Listing..." : "Create Listing"}
             </Button>

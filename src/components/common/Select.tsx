@@ -1,4 +1,5 @@
 import React from "react";
+import "./Select.css";
 
 interface Option {
   value: string;
@@ -7,7 +8,7 @@ interface Option {
 
 interface SelectProps {
   id: string;
-  name: string; // Adding name property to fix TypeScript errors
+  name: string;
   label: string;
   options: Option[];
   value: string;
@@ -19,7 +20,7 @@ interface SelectProps {
 
 const Select: React.FC<SelectProps> = ({
   id,
-  name, // Include name in destructuring
+  name,
   label,
   options,
   value,
@@ -29,22 +30,17 @@ const Select: React.FC<SelectProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`mb-4 ${className}`}>
-      <label
-        htmlFor={id}
-        className="block text-sm font-medium text-gray-700 mb-1"
-      >
-        {label} {required && <span className="text-red-500">*</span>}
+    <div className={`select-container ${className}`}>
+      <label htmlFor={id} className="select-label">
+        {label} {required && <span className="required-mark">*</span>}
       </label>
       <select
         id={id}
-        name={name} // Use name attribute in select
+        name={name}
         value={value}
         onChange={onChange}
         required={required}
-        className={`w-full px-3 py-2 border ${
-          error ? "border-red-500" : "border-gray-300"
-        } rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary`}
+        className={`select-field ${error ? "select-error" : ""}`}
       >
         <option value="">Select an option</option>
         {options.map((option) => (
@@ -53,7 +49,7 @@ const Select: React.FC<SelectProps> = ({
           </option>
         ))}
       </select>
-      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };

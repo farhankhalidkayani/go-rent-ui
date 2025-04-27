@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
 import Select from "../components/common/Select";
+import "./RegisterPage.css";
 
 const RegisterPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -88,125 +89,134 @@ const RegisterPage: React.FC = () => {
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen py-12">
-      <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-center mb-6">
-          Create Your Go-Rent Account
-        </h1>
-        <p className="text-gray-600 text-center mb-8">
+    <div className="auth-page">
+      <div className="auth-container">
+        <h1 className="auth-title">Create Your Go-Rent Account</h1>
+        <p className="auth-subtitle">
           Join our community and start renting or listing items today.
         </p>
 
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Input
-              id="firstName"
-              name="firstName"
-              label="First Name"
-              placeholder="Enter your first name"
-              value={formData.firstName}
-              onChange={handleChange}
-              error={errors.firstName}
-              required
-            />
+          <div className="form-grid">
+            <div className="form-row">
+              <Input
+                id="firstName"
+                name="firstName"
+                label="First Name"
+                placeholder="Enter your first name"
+                value={formData.firstName}
+                onChange={handleChange}
+                error={errors.firstName}
+                required
+              />
+            </div>
 
+            <div className="form-row">
+              <Input
+                id="lastName"
+                name="lastName"
+                label="Last Name"
+                placeholder="Enter your last name"
+                value={formData.lastName}
+                onChange={handleChange}
+                error={errors.lastName}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="form-row">
             <Input
-              id="lastName"
-              name="lastName"
-              label="Last Name"
-              placeholder="Enter your last name"
-              value={formData.lastName}
+              id="email"
+              name="email"
+              label="Email Address"
+              type="email"
+              placeholder="Enter your email"
+              value={formData.email}
               onChange={handleChange}
-              error={errors.lastName}
+              error={errors.email}
               required
             />
           </div>
 
-          <Input
-            id="email"
-            name="email"
-            label="Email Address"
-            type="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-            error={errors.email}
-            required
-          />
+          <div className="form-row">
+            <Input
+              id="phone"
+              name="phone"
+              label="Phone Number"
+              placeholder="Enter your phone number"
+              value={formData.phone}
+              onChange={handleChange}
+              error={errors.phone}
+              required
+            />
+          </div>
 
-          <Input
-            id="phone"
-            name="phone"
-            label="Phone Number"
-            placeholder="Enter your phone number"
-            value={formData.phone}
-            onChange={handleChange}
-            error={errors.phone}
-            required
-          />
+          <div className="form-row">
+            <Input
+              id="password"
+              name="password"
+              label="Password"
+              type="password"
+              placeholder="Create a password"
+              value={formData.password}
+              onChange={handleChange}
+              error={errors.password}
+              required
+            />
+          </div>
 
-          <Input
-            id="password"
-            name="password"
-            label="Password"
-            type="password"
-            placeholder="Create a password"
-            value={formData.password}
-            onChange={handleChange}
-            error={errors.password}
-            required
-          />
+          <div className="form-row">
+            <Input
+              id="confirmPassword"
+              name="confirmPassword"
+              label="Confirm Password"
+              type="password"
+              placeholder="Confirm your password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              error={errors.confirmPassword}
+              required
+            />
+          </div>
 
-          <Input
-            id="confirmPassword"
-            name="confirmPassword"
-            label="Confirm Password"
-            type="password"
-            placeholder="Confirm your password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            error={errors.confirmPassword}
-            required
-          />
+          <div className="form-row">
+            <Select
+              id="userType"
+              name="userType"
+              label="I am registering as"
+              options={userTypeOptions}
+              value={formData.userType}
+              onChange={handleChange}
+              error={errors.userType}
+              required
+            />
+          </div>
 
-          <Select
-            id="userType"
-            name="userType"
-            label="I am registering as"
-            options={userTypeOptions}
-            value={formData.userType}
-            onChange={handleChange}
-            error={errors.userType}
-            required
-          />
-
-          <div className="mt-6">
+          <div className="form-row">
             <Button type="submit" fullWidth>
               Create Account
             </Button>
           </div>
 
-          <div className="mt-4 text-center">
-            <p className="text-sm text-gray-600">
+          <div className="auth-footnote">
+            <p>
               By creating an account, you agree to our{" "}
-              <Link to="/terms" className="text-primary hover:underline">
+              <Link to="/terms" className="auth-link">
                 Terms of Service
               </Link>{" "}
               and{" "}
-              <Link to="/privacy" className="text-primary hover:underline">
+              <Link to="/privacy" className="auth-link">
                 Privacy Policy
               </Link>
             </p>
           </div>
         </form>
 
-        <div className="mt-8 border-t pt-6 text-center">
-          <p className="text-gray-600">
+        <div className="auth-footer">
+          <p className="auth-footer-text">
             Already have an account?{" "}
-            <Link
-              to="/login"
-              className="text-primary font-medium hover:underline"
-            >
+            <Link to="/login" className="auth-link">
               Sign In
             </Link>
           </p>

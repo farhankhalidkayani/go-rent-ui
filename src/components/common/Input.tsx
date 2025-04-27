@@ -1,8 +1,9 @@
 import React from "react";
+import "./Input.css";
 
 interface InputProps {
   id: string;
-  name: string; // Adding name property to fix TypeScript errors
+  name: string;
   label: string;
   type?: string;
   placeholder?: string;
@@ -15,7 +16,7 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({
   id,
-  name, // Include name in destructuring
+  name,
   label,
   type = "text",
   placeholder,
@@ -26,26 +27,21 @@ const Input: React.FC<InputProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`mb-4 ${className}`}>
-      <label
-        htmlFor={id}
-        className="block text-sm font-medium text-gray-700 mb-1"
-      >
-        {label} {required && <span className="text-red-500">*</span>}
+    <div className={`input-container ${className}`}>
+      <label htmlFor={id} className="input-label">
+        {label} {required && <span className="required-mark">*</span>}
       </label>
       <input
         id={id}
-        name={name} // Use name attribute in input
+        name={name}
         type={type}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         required={required}
-        className={`w-full px-3 py-2 border ${
-          error ? "border-red-500" : "border-gray-300"
-        } rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary`}
+        className={`input-field ${error ? "input-error" : ""}`}
       />
-      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };

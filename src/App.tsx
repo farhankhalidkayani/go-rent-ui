@@ -5,6 +5,11 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import CreateListingPage from "./pages/CreateListingPage";
+import HowItWorksPage from "./pages/HowItWorksPage";
+import BrowsePage from "./pages/BrowsePage";
+import AboutUsPage from "./pages/AboutUsPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
 import "./App.css";
 // Import our test styles directly
 import "./test-styles.css";
@@ -31,6 +36,46 @@ function App() {
           element={
             <Layout>
               <CreateListingPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/how-it-works"
+          element={
+            <Layout>
+              <HowItWorksPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/browse"
+          element={
+            <Layout>
+              <BrowsePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <Layout>
+              <AboutUsPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/privacy"
+          element={
+            <Layout>
+              <PrivacyPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/terms"
+          element={
+            <Layout>
+              <TermsPage />
             </Layout>
           }
         />
