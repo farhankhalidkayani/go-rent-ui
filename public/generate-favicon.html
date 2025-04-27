@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Generate Favicon</title>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="32"
+      height="32"
+      style="border: 1px solid black; width: 128px; height: 128px"
+    ></canvas>
+    <p>
+      Right-click on the image above and select "Save Image As..." to download
+      the favicon. Save it as "favicon.ico" in the public folder.
+    </p>
+    <script>
+      // Get the canvas element
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      // Draw background
+      ctx.fillStyle = "#3B82F6"; // Blue color
+      ctx.beginPath();
+      ctx.roundRect(0, 0, 32, 32, 8); // Rounded rectangle
+      ctx.fill();
+
+      // Draw "GR" text in white
+      ctx.fillStyle = "white";
+      ctx.font = "bold 18px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("GR", 16, 16);
+
+      // Note: ICO format isn't directly supported by Canvas, so we'll generate a PNG
+      // that you can convert to ICO using an online converter or just use as a favicon directly
+      const dataURL = canvas.toDataURL("image/png");
+
+      // Create an image element to display the result
+      const img = new Image();
+      img.src = dataURL;
+      document.body.appendChild(img);
+
+      // Update canvas with the image data
+      canvas.toBlob(function (blob) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.download = "favicon.png";
+        a.href = url;
+        a.textContent = "Download PNG";
+        document.body.appendChild(a);
+      });
+    </script>
+  </body>
+</html>
